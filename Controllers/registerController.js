@@ -11,10 +11,13 @@ const handleNewUser = async (req, res) => {
    
   
  //check for duplicate usernames in the db
-    const duplicate = await User.findOne({ email }).exec();
-    if (duplicate) return res.sendStatus(409); //Conflict 
+    // const duplicate = await User.findOne({ email }).exec();
+    // if (duplicate) return res.sendStatus(409); //Conflict 
 
     try {
+
+    const duplicate = await User.findOne({ email }).exec();
+        if (duplicate) return res.sendStatus(409);
         //encrypt the password
         const user = await User.create({
             email,
@@ -29,10 +32,6 @@ const handleNewUser = async (req, res) => {
         });
 
 
-
-
-        
-    
       
         res.status(201).json({
              'status': 'success',

@@ -57,7 +57,7 @@ const userSchema = new Schema({
         required:  [true, 'Email is a required field!'],
         unique:true,
         lowercase:true,
-        validator :[validator.isEmail, 'Please enter a valid email']
+        validate :[validator.isEmail, 'Please enter a valid email']
     },
     occupation: {
         type: String,
