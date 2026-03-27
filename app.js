@@ -3,17 +3,25 @@ const path = require('path');
 const cors = require('cors');
 const { logger } = require('./middleware/logEvents');
 const globalErrorHandler = require('./Controllers/errorController');
-
 let app = express();
 
+
+
+
+
+
+
 app.use(logger);
+
+
+
+// Cross Origin Resource Sharing
+app.use(cors());
 app.use(express.json());
 app.use('/', express.static(path.join(__dirname, '/public')));
 
 // routes
 app.use('/', require('./routes/root'));
-
-
 app.use('/register', require('./routes/register'));
 // app.use('/auth', require('./routes/auth'));
 // app.use('/refresh', require('./routes/refresh'));
