@@ -26,7 +26,7 @@ module.exports = (error, req, res, next) => {
         // if(error.name === 'CastError') error = castErrorHandler(error);
         // if(error.code === 11000) error = duplicateKeyErrorHandler(error);
         // if(error.name === 'ValidationError') error = validationErrorHandler(error);
-
-        prodErrors(res, error);
+            console.log(error)
+        // prodErrors(res, error);
     }
 }
