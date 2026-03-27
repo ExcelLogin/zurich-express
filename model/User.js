@@ -126,16 +126,12 @@ const userSchema = new Schema({
 }, { id: false }
 );
 
-    userSchema.pre('save', async function(next){
-
-    if(!this.isModified('password')) return next()
-            //encrypt password
-    this.password =  await bcrypt.hash(this.password, 12);
-
+userSchema.pre('save', async function() {
+    if (!this.isModified('password')) return;
+    
+    this.password = await bcrypt.hash(this.password, 12);
     this.confirmpassword = undefined;
-
-    next()
-    })
+});
 
 
     // userSchema.methods.comparePasswordInDb = async function(pswd, psdDb){
