@@ -22,3 +22,5 @@
 20260327	03:49:39	a93c3688-5f7e-42cb-a3c7-3309b9deeeae	POST	undefined	/register
 20260327	03:50:47	89e00cae-6563-4a07-b3a3-66678c169596	POST	undefined	/register
 20260327	03:51:37	831c5140-1f21-45b6-b7d3-6c64e79656f8	POST	undefined	/register
+20260327	04:06:05	3994f709-c96d-4f80-b03e-4a060fa5af3c	GET	undefined	/
+20260327	04:06:06	fa952216-f046-4e3e-811b-b616d49e7b9c	GET	undefined	/css/style.css
