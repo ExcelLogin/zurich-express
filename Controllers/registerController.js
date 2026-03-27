@@ -1,8 +1,10 @@
 const User = require('../model/User');
 const UserApi= require('../model/UserData');
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
+const connectDB = require('../config/dbConn');
 
 const handleNewUser = async (req, res) => {
+     await connectDB(); 
      const { email, password,confirmpassword, ...rest} = req.body;
 
      if (!email || !password || !confirmpassword ) return res.status(400).json({ 'message': 'Email and password are required.' });
