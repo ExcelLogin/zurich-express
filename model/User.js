@@ -126,21 +126,21 @@ const userSchema = new Schema({
 }, { id: false }
 );
 
-//     userSchema.pre('save', async function(next){
+    userSchema.pre('save', async function(next){
 
-//     if(!this.isModified('password')) return next()
-//             //encrypt password
-//     this.password =  await bcrypt.hash(this.password, 12);
+    if(!this.isModified('password')) return next()
+            //encrypt password
+    this.password =  await bcrypt.hash(this.password, 12);
 
-//     this.confirmpassword = undefined;
+    this.confirmpassword = undefined;
 
-//     next()
-//     })
+    next()
+    })
 
 
-//     userSchema.methods.comparePasswordInDb = async function(pswd, psdDb){
-//         return await bcrypt.compare(pswd, psdDb);
-//     }
+    // userSchema.methods.comparePasswordInDb = async function(pswd, psdDb){
+    //     return await bcrypt.compare(pswd, psdDb);
+    // }
 
 
 
