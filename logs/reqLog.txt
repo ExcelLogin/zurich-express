@@ -16,3 +16,9 @@
 20260327	01:00:24	1899891b-8d4d-4742-959c-b17c73415baf	GET	undefined	/css/style.css
 20260327	01:27:40	8d6989fe-ab69-43ca-8219-16e15aa658c5	GET	undefined	/
 20260327	01:27:40	2f85579d-c4a7-483e-8565-8db78d10cf7a	GET	undefined	/css/style.css
+20260327	03:49:15	89c0861a-3951-4503-bf11-e51c75ca6f2c	GET	undefined	/
+20260327	03:49:15	4c88ef85-45db-4fe0-a4ae-adbd64e9558a	GET	undefined	/css/style.css
+20260327	03:49:22	206f1c97-f0ed-41fc-aecd-8913b085ecb7	POST	undefined	/
+20260327	03:49:39	a93c3688-5f7e-42cb-a3c7-3309b9deeeae	POST	undefined	/register
+20260327	03:50:47	89e00cae-6563-4a07-b3a3-66678c169596	POST	undefined	/register
+20260327	03:51:37	831c5140-1f21-45b6-b7d3-6c64e79656f8	POST	undefined	/register
