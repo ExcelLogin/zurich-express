@@ -1,9 +1,14 @@
 
+// const User = require('../model/User');
+// const jwt = require('jsonwebtoken');
+// const sendEmail = require('../Utils/email');
+// const asyncErrorHandler = require('../Utils/asyncErrorHandlers');
 const User = require('../model/User');
 const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
+const CustomError = require('../Utils/CustomError');
 const sendEmail = require('../Utils/email');
 const asyncErrorHandler = require('../Utils/asyncErrorHandlers');
-
 
 
 
@@ -95,7 +100,7 @@ const handleLogin = async (req, res) => {
 
 //forgot route controller 
 
-const forgotPassword = asyncErrorHandler (async(req,res)=>{
+const forgotPassword = asyncErrorHandler (async(req,res,next)=>{
       const { email } = req.body;
     //1 GET USER BASED ON POSTED EMAIL 
     const user = await User.findOne({ email})
@@ -144,7 +149,7 @@ return res.status(500).json({ message: err.message, stack: err.stack });
 ) 
 
 
-const resetPassword = async(req, res) => {
+const resetPassword = async(req, res,next) => {
 const {password,confirmpassword}=req.body;
 
   const token = crypto.createHash('sha256').update(req.params.token).digest('hex');
