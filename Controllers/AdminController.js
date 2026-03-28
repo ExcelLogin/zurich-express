@@ -1,6 +1,6 @@
 
 const UserDetails = require('../model/UserData');
-const asyncErrorHandler = require('../utils/asyncErrorHandlers');
+const asyncErrorHandler = require('../Utils/asyncErrorHandlers');
 const CustomError = require('../Utils/CustomError');
 
 

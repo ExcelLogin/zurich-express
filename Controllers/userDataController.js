@@ -1,5 +1,5 @@
 const UserDetails = require('../model/UserData');
-const asyncErrorHandler = require('../utils/asyncErrorHandlers');
+const asyncErrorHandler = require('../Utils/asyncErrorHandlers');
 const CustomError = require('../Utils/CustomError');
 
 // Route to add to the account balance

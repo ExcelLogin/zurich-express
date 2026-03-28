@@ -1,6 +1,6 @@
 const User = require('../model/User');
 util =require('util');
-const asyncErrorHandler = require('../utils/asyncErrorHandlers');
+const asyncErrorHandler = require('../Utils/asyncErrorHandlers');
 const CustomError = require('../Utils/CustomError');
 // const jwt = require('jsonwebtoken');
 

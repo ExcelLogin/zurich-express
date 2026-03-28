@@ -1,8 +1,8 @@
 
 const User = require('../model/User');
 const jwt = require('jsonwebtoken');
-const sendEmail = require('../utils/email');
-const asyncErrorHandler = require('../utils/asyncErrorHandlers');
+const sendEmail = require('../Utils/email');
+const asyncErrorHandler = require('../Utils/asyncErrorHandlers');
 
 
 
