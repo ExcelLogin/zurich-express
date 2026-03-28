@@ -1,8 +1,12 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 const { logger } = require('./middleware/logEvents');
+const verifyJWT = require('./middleware/verifyJWT');
+const credentials = require('./middleware/credentials');
 const globalErrorHandler = require('./Controllers/errorController');
+const corsOptions = require('./config/corsOptions');
 let app = express();
 
 
@@ -14,17 +18,35 @@ let app = express();
 app.use(logger);
 
 
-
 // Cross Origin Resource Sharing
-app.use(cors());
+app.use(cors(corsOptions));
+
+// built-in middleware to handle urlencoded form data
+app.use(express.urlencoded({ extended: false }));
+
+// built-in middleware for json 
 app.use(express.json());
+//middleware for cookies
+app.use(cookieParser());
+
+//serve static files
 app.use('/', express.static(path.join(__dirname, '/public')));
 
 // routes
 app.use('/', require('./routes/root'));
 app.use('/register', require('./routes/register'));
+app.use('/auth', require('./routes/auth'));
+app.use('/refresh', require('./routes/refresh'));
+app.use('/logout', require('./routes/logout'));
 
 
+
+
+
+app.use(verifyJWT);
+app.use('/users', require('./routes/api/users'));
+app.use('/userData', require('./routes/api/userData'))
+app.use('/Admin', require('./routes/api/Admin'))
 
 
 

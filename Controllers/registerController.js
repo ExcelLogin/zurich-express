@@ -10,12 +10,9 @@ const handleNewUser = async (req, res) => {
      if (!email || !password || !confirmpassword ) return res.status(400).json({ 'message': 'Email and password are required.' });
    
   
- //check for duplicate usernames in the db
-    // const duplicate = await User.findOne({ email }).exec();
-    // if (duplicate) return res.sendStatus(409); //Conflict 
 
     try {
-
+       //check for duplicate usernames in the db
     const duplicate = await User.findOne({ email }).exec();
         if (duplicate) return res.sendStatus(409);
         //encrypt the password

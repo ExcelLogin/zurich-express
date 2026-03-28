@@ -103,25 +103,24 @@ const userSchema = new Schema({
     passport:{
         type: String,
     },
-   roles: {
-    type: {
+roles: {
         User: {
             type: Number,
-            default: 2001
+            default: 2001 
         },
-        Editor: {
+        Editor:{
             type: Number,
             default: 1984
         },
         Admin: Number,
     },
-    select: false  
-},
      refreshToken: [String],
 
     passwordChangedAt:Date,
-     passwordResetToken:String,
-     passwordResetTokenExpire:Date
+
+    passwordResetToken:String,
+    
+    passwordResetTokenExpire:Date
 
 }, { id: false }
 );
@@ -134,9 +133,9 @@ userSchema.pre('save', async function() {
 });
 
 
-    // userSchema.methods.comparePasswordInDb = async function(pswd, psdDb){
-    //     return await bcrypt.compare(pswd, psdDb);
-    // }
+    userSchema.methods.comparePasswordInDb = async function(pswd, psdDb){
+        return await bcrypt.compare(pswd, psdDb);
+    }
 
 
 
