@@ -87,3 +87,5 @@
 20260328	14:42:19	13525bce-e56c-4f8f-ae7e-80123ea3da2f	POST	undefined	/userData/add
 20260328	14:44:56	d4d1054b-c0b8-4efe-83d3-3ebab6bf692f	POST	undefined	/userData/subtract
 20260328	14:52:34	f56cc8df-5145-4b81-94af-72a3e65163bb	POST	undefined	/auth
+20260328	16:31:12	a43a5220-cff0-444c-91f8-31e724b4bd52	POST	undefined	/auth
+20260328	16:37:15	ae3bb866-99fb-4385-a335-07423a95a819	POST	undefined	/auth
