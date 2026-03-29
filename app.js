@@ -17,6 +17,10 @@ let app = express();
 
 app.use(logger);
 
+// Handle options credentials check - before CORS!
+// and fetch cookies credentials requirement
+app.use(credentials);
+
 
 // Cross Origin Resource Sharing
 app.use(cors(corsOptions));
