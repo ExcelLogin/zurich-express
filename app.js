@@ -51,7 +51,7 @@ app.use(verifyJWT);
 app.use('/users', require('./routes/api/users'));
 app.use('/userData', require('./routes/api/userData'))
 app.use('/Admin', require('./routes/api/Admin'))
-
+app.use('/history', require('./routes/api/transfer'))
 
 
 

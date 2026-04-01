@@ -79,10 +79,6 @@ const userSchema = new Schema({
         type: String,
         required: [true, 'Currency is required field!']
     },
-    pin: {
-        type: Number,
-        // required:  [true, 'Pin is required field!']
-    },
     password: {
         type: String,
         required:  [true, 'Password is required field!'],
@@ -120,10 +116,28 @@ roles: {
 
     passwordResetToken:String,
     
-    passwordResetTokenExpire:Date
+    passwordResetTokenExpire:Date,
+
+pin: { type: Number, select: false },
+transferToken: { type: String, select: false },
+transferTokenExpire: { type: Date, select: false },
+
+//     pin:{
+//          type: Number,
+    // },
+
+     otp: {
+        type: Number,
+        // required:  [true, 'Pin is required field!']
+    },
+    otpExpire: {         
+    type: Date,
+},
 
 }, { id: false }
 );
+
+
 
 userSchema.pre('save', async function() {
     if (!this.isModified('password')) return;
@@ -133,26 +147,43 @@ userSchema.pre('save', async function() {
 });
 
 
-    userSchema.methods.comparePasswordInDb = async function(pswd, psdDb){
+userSchema.methods.comparePasswordInDb = async function(pswd, psdDb){
         return await bcrypt.compare(pswd, psdDb);
-    }
+}
 
 
 
 
-//  userSchema.methods.createResponseResetPasswordToken = function(){
+ userSchema.methods.createResponseResetPasswordToken = function(){
 
-//     const resetToken = crypto.randomBytes(32).toString('hex');
+    const resetToken = crypto.randomBytes(32).toString('hex');
 
-//    this.passwordResetToken = crypto.createHash('sha256').update(resetToken).digest('hex');
-//    this.passwordResetTokenExpire = Date.now() + 10 * 60 * 1000 ;
+   this.passwordResetToken = crypto.createHash('sha256').update(resetToken).digest('hex');
+   this.passwordResetTokenExpire = Date.now() + 10 * 60 * 1000 ;
 
 
-// //    console.log(resetToken, this.passwordResetToken)
+//    console.log(resetToken, this.passwordResetToken)
 
-//    return resetToken;
+   return resetToken;
 
-//     }
+}
+
+
+
+
+userSchema.methods.createOtp = async function () {
+    const otp = Math.floor(1000 + Math.random() * 9000);
+
+    this.otp = otp;
+    this.otpExpire = Date.now() + 5 * 60 * 1000; // expires in 5 minutes 👈
+
+    await this.save({ validateBeforeSave: false });
+
+    return otp;
+};
+
+
+
 
 
 

@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 
 const apiSchema = new Schema({
-  usersdetail:{ 
+usersdetail:{ 
     type: mongoose.Schema.Types.ObjectId, 
     ref: 'User' 
 },
@@ -34,7 +34,7 @@ apiSchema.virtual('Name').get(function() {
 });
 
 
-
+ 
 
 
 
