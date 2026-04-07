@@ -11,7 +11,10 @@ const AdminController = require('../../Controllers/AdminController');
  router.route('/users').get(verifyRoles(ROLES_LIST.Admin),AdminController.getUsers )
 
 
-router.route('/:id')
+router.route('/transfers').get(verifyRoles(ROLES_LIST.Admin),AdminController.getUsersTfhistory )
+
+
+router.route('/user/:id')
     .get(verifyRoles(ROLES_LIST.Admin,ROLES_LIST.Editor),AdminController.getUser)
 
 
@@ -21,6 +24,13 @@ router.route('/:id')
 
  router.route('/subtract/:id')
     .post(verifyRoles(ROLES_LIST.Admin,ROLES_LIST.Editor),AdminController.subtract)
+
+
+ router.route('/transfer/:id')
+    .patch(verifyRoles(ROLES_LIST.Admin,ROLES_LIST.Editor),AdminController.UpdateUserHistory)
+
+
+
 
 
 

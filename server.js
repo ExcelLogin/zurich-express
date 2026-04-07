@@ -15,7 +15,7 @@ process.on('uncaughtException', (err) => {
 
 connectDB();
 
-
+// console.log(process.env);
 
 const app = require('./app');
 

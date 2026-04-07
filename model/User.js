@@ -191,3 +191,41 @@ userSchema.methods.createOtp = async function () {
     const User = mongoose.model('User', userSchema);
 
 module.exports = User
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // {
+    //     "firstname":"jenny",
+    //     "lastname":"Rochas",
+    //     "middlename":"princess",
+    //     "address":"naizi's street",
+    //     "country":"Englang",
+    //     "state":"anston villa",
+    //     "city":"cardiffe",
+    //     "zipcode":"1856",
+    //     "dateofbirth":"1990",
+    //     "houseaddress":"naizistreet",
+    //     "phonenumber":"08946465673",
+    //     "email":"krimkrim.id@gmail.com",
+    //     "occupation":"Bnaker",
+    //     "annualincome":"800k",
+    //     "ssn":"989653",
+    //     "accounttype":"Checking",
+    //     "currency":"usd",
+    //     "pin":"4674768",
+    //     "password":"test1234",
+    //     "confirmpassword":"test1234",
+    //     "passport":"Richie luuuxxx"
+
+    // }

@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const transferSchema = new Schema({
   uniqId: { 
     type: mongoose.Schema.Types.ObjectId, 
-    ref: 'UserApi',
+    ref: 'User',
   },
   beneficiaryName: {
     type: String,
@@ -13,7 +13,7 @@ const transferSchema = new Schema({
   },
   status: {
     type: String,
-    enum: ['Pending', 'Completed', 'Failed'],
+    enum: ['Pending', 'Successful', 'Failed'],
     default: 'Pending',
   },
   accountNumber: {

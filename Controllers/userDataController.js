@@ -1,4 +1,5 @@
 const UserDetails = require('../model/UserData');
+const TransferApi = require('../model/TransferHistory');
 const asyncErrorHandler = require('../Utils/asyncErrorHandlers');
 const CustomError = require('../Utils/CustomError');
 
@@ -101,6 +102,29 @@ const getUser = asyncErrorHandler(async (req, res, next) => {
 ) 
 
 
+const getTfhistory = asyncErrorHandler(async(req, res, next) => {
+
+
+let userTfhistory = await TransferApi.find({ 'uniqId' : req._id}).select('-_id  -__v');
+
+    if (!userTfhistory ) {
+     const error = new CustomError('User has no history', 404);
+        return next(error);
+    }
+
+ res.status(200).json({ success: true, data: userTfhistory  })
+
+
+})
+
+
+
+
+
+
+
+
+
 
 
 
@@ -110,4 +134,5 @@ module.exports = {
     add,
     getUser,
     subtract,
+    getTfhistory
 }

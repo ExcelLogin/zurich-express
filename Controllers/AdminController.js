@@ -1,4 +1,4 @@
-
+const TransferHistory= require('../model/TransferHistory');
 const UserDetails = require('../model/UserData');
 const asyncErrorHandler = require('../Utils/asyncErrorHandlers');
 const CustomError = require('../Utils/CustomError');
@@ -108,11 +108,65 @@ const subtract = asyncErrorHandler(async (req, res, next) => {
 
 
 
+
+getUsersTfhistory = asyncErrorHandler(async (req, res,next) => {
+
+    const tfHistories = await TransferHistory.find({})
+    .populate('uniqId', '_id')
+    .select('-id').exec();
+
+  if(!tfHistories){
+     const error = new CustomError('No histories yet', 404);
+                return next(error);
+  }
+   
+ res.status(200).json({
+        'status':'success',
+         data:tfHistories
+    });
+}
+) 
+
+
+
+
+const UpdateUserHistory = asyncErrorHandler(async (req, res,next) => {
+
+
+const history = await TransferHistory.findOneAndUpdate({ "_id": req.params.id},{ ...req.body  },  // ← use $set and target `status` field
+    { returnDocument: 'after', runValidators: true } );
+
+
+  if(!history){
+     const error = new CustomError('No histories yet', 404);
+                return next(error);
+  }
+   
+
+ res.status(200).json({
+        'status':'success',
+         data:history
+    });
+
+
+
+}
+) 
+
+
+
+
+
+
+
+
 module.exports = {
     getUser,
     getUsers,
     add,
     subtract,
+    getUsersTfhistory,
+    UpdateUserHistory
     // upDateUsers,
     // upDateUser
 

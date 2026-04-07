@@ -14,4 +14,7 @@ router.route('/').get(verifyRoles(ROLES_LIST.Editor),userDataController.getUser 
 
 
 
+router.route('/transfers').get(verifyRoles(ROLES_LIST.Editor),userDataController.getTfhistory )
+
+
 module.exports = router;
