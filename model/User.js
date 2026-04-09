@@ -154,6 +154,7 @@ userSchema.methods.comparePasswordInDb = async function(pswd, psdDb){
 
 
 
+
  userSchema.methods.createResponseResetPasswordToken = function(){
 
     const resetToken = crypto.randomBytes(32).toString('hex');
