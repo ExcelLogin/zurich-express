@@ -9,19 +9,19 @@ const CustomError = require('../Utils/CustomError');
 
 
 
-const getAllUsers = asyncErrorHandler(async (req, res, next) => {
+// const getAllUsers = asyncErrorHandler(async (req, res, next) => {
 
- const users = await User.find().select("-password -confirmpassword -roles");
+//  const users = await User.find().select("-password -confirmpassword -roles");
 
-   res.status(200).json({
-        status: 'success',
-        length: users.length,
-        data: {
-           users
-        }
-    });
+//    res.status(200).json({
+//         status: 'success',
+//         length: users.length,
+//         data: {
+//            users
+//         }
+//     });
 
-})
+// })
 
 
 
@@ -47,7 +47,7 @@ const getUser = asyncErrorHandler( async(req, res, next) => {
 
 
 module.exports = {
-    getAllUsers,
+    // getAllUsers,
     getUser,
     // forgotPassword,
     // resetPassword

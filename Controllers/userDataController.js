@@ -68,7 +68,7 @@ const getUser = asyncErrorHandler(async (req, res, next) => {
  
     const userD = await UserDetails.findOne({ 'usersdetail' :req._id})
     .select('-_id -id')
-    .populate('usersdetail',"firstname email lastname country balance accounttype dateofbirth phonenumber houseaddress").select('-__v ')
+    .populate('usersdetail',"firstname email lastname country accounttype dateofbirth phonenumber houseaddress").select('-__v ')
     .select('-_id -_id -__v').exec();
 
   

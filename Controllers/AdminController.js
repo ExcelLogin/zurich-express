@@ -1,16 +1,41 @@
 const TransferHistory= require('../model/TransferHistory');
 const UserDetails = require('../model/UserData');
+const User = require('../model/User');
 const asyncErrorHandler = require('../Utils/asyncErrorHandlers');
 const CustomError = require('../Utils/CustomError');
 
 
 
 
+
+//get the main users details without populate for general update.
+const getMainUserData = asyncErrorHandler(async (req, res, next) => {
+
+    const users = await User.find()
+     .select('-roles  -refreshToken -passwordResetToken -passwordResetTokenExpire');
+
+    if (!users || users.length === 0) {
+        const error = new CustomError('No Users account found', 404);
+        return next(error);
+    }
+
+    res.status(200).json({
+        status: 'success',
+        data: users
+    });
+});
+
+
+
+
+
+
+  //
 const getUser = asyncErrorHandler(async (req, res,next) => {
 
     const userD = await UserDetails.findOne({ 'usersdetail' : req.params.id}) //await User.findById(req.params.id)
     .select('-_id -id')
-    .populate('usersdetail',"firstname email lastname country balance").select('-__v')
+    .populate('usersdetail',"firstname email lastname country ").select('-__v')
     .select('-_id -id').exec();
 
   if(!userD){
@@ -27,12 +52,12 @@ const getUser = asyncErrorHandler(async (req, res,next) => {
 }
 ) 
 
-
+//
 const getUsers = asyncErrorHandler(async(req, res, next)=> {
     
     const userD = await UserDetails.find()
      .select('-_id -id')
-    .populate('usersdetail',"firstname email lastname country balance").select('-__v')
+    .populate('usersdetail',"firstname email lastname country").select('-__v')
     .select('-_id -id').exec();
   
    res.status(200).json({
@@ -46,7 +71,7 @@ const getUsers = asyncErrorHandler(async(req, res, next)=> {
 
 
 
-
+//
 const add = asyncErrorHandler(async (req, res, next) => {
 
   const { balance } = req.body;
@@ -75,7 +100,7 @@ const add = asyncErrorHandler(async (req, res, next) => {
 
 
 
-
+//
 const subtract = asyncErrorHandler(async (req, res, next) => {
   const { balance } = req.body;
 
@@ -109,7 +134,7 @@ const subtract = asyncErrorHandler(async (req, res, next) => {
 
 
 
-getUsersTfhistory = asyncErrorHandler(async (req, res,next) => {
+const getUsersTfhistory = asyncErrorHandler(async (req, res,next) => {
 
     const tfHistories = await TransferHistory.find({})
     .populate('uniqId', '_id')
@@ -129,7 +154,7 @@ getUsersTfhistory = asyncErrorHandler(async (req, res,next) => {
 
 
 
-
+//
 const UpdateUserHistory = asyncErrorHandler(async (req, res,next) => {
 
 
@@ -161,6 +186,7 @@ const history = await TransferHistory.findOneAndUpdate({ "_id": req.params.id},{
 
 
 module.exports = {
+  getMainUserData,
     getUser,
     getUsers,
     add,

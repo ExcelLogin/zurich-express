@@ -8,6 +8,11 @@ const AdminController = require('../../Controllers/AdminController');
 
 
 
+
+
+ router.route('/usermaindata').get(verifyRoles(ROLES_LIST.Admin),AdminController.getMainUserData )
+
+
  router.route('/users').get(verifyRoles(ROLES_LIST.Admin),AdminController.getUsers )
 
 

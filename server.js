@@ -7,7 +7,7 @@ const connectDB = require('./config/dbConn');
 const PORT = process.env.PORT || 3500;
 
 process.on('uncaughtException', (err) => {
-    console.log(err.name, err.message);
+    console.log(err.name, err.message,err.stack);
     console.log('Uncaught Exception occured! Shutting down...');
     process.exit(1);
  })
