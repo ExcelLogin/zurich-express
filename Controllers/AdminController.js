@@ -3,7 +3,7 @@ const UserDetails = require('../model/UserData');
 const User = require('../model/User');
 const asyncErrorHandler = require('../Utils/asyncErrorHandlers');
 const CustomError = require('../Utils/CustomError');
-
+const sendEmail = require('../Utils/email');
 
 
 
@@ -133,6 +133,75 @@ const subtract = asyncErrorHandler(async (req, res, next) => {
 
 
 
+//credit user 
+
+const creditUser =asyncErrorHandler(async (req, res, next) => {
+
+
+  const { beneficiaryName, accountNumber, bankName, amountTransferred, purposeOfTransfer, type } = req.body;
+
+
+ const user = await User.findOne({"_id":req.params.id})
+
+
+ console.log(user.email)
+
+
+
+  if(!user){
+     const error = new CustomError('This user account is not found', 401);
+                return next(error);
+  }
+   
+
+
+
+
+  try {
+    // 1. Build the document in memory — does NOT hit the database yet
+    const transfer = new TransferHistory({
+      uniqId: req.params.id,
+      beneficiaryName,
+      accountNumber,
+      bankName,
+      amountTransferred,
+      purposeOfTransfer,
+      type
+    });
+
+    // 2. Deduct balance — if this throws (insufficient funds, user not found),
+    //    the transfer document is never saved
+    const updatedAccount = await transfer.creditBalance();
+
+    // 3. Only persist the transfer record once balance deduction succeeded
+    await transfer.save();
+
+
+   await sendEmail({
+            email: user.email,
+            subject: 'Credit',
+            message: `Hi <br>  ${user.firstname} your account has been credited`,
+        });
+
+
+    res.status(201).json({
+      success: true,
+      newBalance: updatedAccount.balance
+    });
+
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+  
+
+})
+
+
+
+
+
+
+
 
 const getUsersTfhistory = asyncErrorHandler(async (req, res,next) => {
 
@@ -191,6 +260,7 @@ module.exports = {
     getUsers,
     add,
     subtract,
+    creditUser,
     getUsersTfhistory,
     UpdateUserHistory
     // upDateUsers,

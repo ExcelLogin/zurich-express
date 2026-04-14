@@ -75,6 +75,19 @@ const debit = async (req, res) => {
     // 3. Only persist the transfer record once balance deduction succeeded
     await transfer.save();
 
+
+
+
+  //  await sendEmail({
+  //           email: user.email,
+  //           subject: 'Debit',
+  //           message: `Hi <br>  ${user.firstname} Have been debited from your account`,
+  //       });
+
+
+
+    
+
     res.status(201).json({
       success: true,
       transfer,

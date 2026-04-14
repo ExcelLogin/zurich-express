@@ -74,6 +74,24 @@ transferSchema.methods.deductBalance = async function () {
 
 
 
+transferSchema.methods.creditBalance = async function () {
+  const UserApi = require('./UserData'); // import here to avoid circular deps
+
+  const userAccount = await UserApi.findOne({"usersdetail":this.uniqId});
+  if (!userAccount) throw new Error('You can not make transfer to this account');
+
+  // if (userAccount.balance < this.amountTransferred) {
+  //   throw new Error('Insufficient balance');
+  // }
+
+  userAccount.balance = userAccount.balance + this.amountTransferred;
+  await userAccount.save();
+
+  return userAccount;
+};
+
+
+
 
 
 

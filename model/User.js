@@ -44,10 +44,7 @@ const userSchema = new Schema({
         type: Date,
         required:  [true, 'Date of birth is required field!']
     },
-    houseaddress: {
-        type: String,
-        required: true
-    },
+  
     phonenumber: {
         type: Number,
         required:  [true, 'Phone number is a required field!']
@@ -59,22 +56,16 @@ const userSchema = new Schema({
         lowercase:true,
         validate :[validator.isEmail, 'Please enter a valid email']
     },
-    occupation: {
-        type: String,
-        required:  [true, 'Occupation is required field!']
-    },
-    annualincome: {
-        type: String,
-        required:  [true, 'Annual income is required field!']
-    },
     ssn: {
         type: Number,
         required:  [true, 'SSN is required field!']
     },
-    accounttype: {
-        type: String,
-        required: [true, 'Account type is required field!']
-    },
+ accounttype: {
+    type: String,
+    enum: ['checking', 'savings'],  // lowercase to match frontend
+    required: true
+},
+   
     currency: {
         type: String,
         required: [true, 'Currency is required field!']
@@ -96,45 +87,39 @@ const userSchema = new Schema({
         }
        
     },
-    passport:{
-        type: String,
-    },
 roles: {
         User: {
             type: Number,
             default: 2001 
         },
-        Editor:{
+Editor:{
             type: Number,
             default: 1984
         },
         Admin: Number,
     },
-     refreshToken: [String],
+ refreshToken: [String],
 
-    passwordChangedAt:Date,
+passwordChangedAt:Date,
 
-    passwordResetToken:String,
+passwordResetToken:String,
     
-    passwordResetTokenExpire:Date,
+passwordResetTokenExpire:Date,
 
 pin: { type: Number, select: false },
 transferToken: { type: String, select: false },
 transferTokenExpire: { type: Date, select: false },
 
-//     pin:{
-//          type: Number,
-    // },
-
-     otp: {
+otp: {
         type: Number,
         // required:  [true, 'Pin is required field!']
     },
-    otpExpire: {         
+otpExpire: {         
     type: Date,
 },
 
-}, { id: false }
+},
+{ id: false }
 );
 
 

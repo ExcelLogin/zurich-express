@@ -23,17 +23,21 @@ router.route('/user/:id')
     .get(verifyRoles(ROLES_LIST.Admin,ROLES_LIST.Editor),AdminController.getUser)
 
 
-    router.route('/add/:id')
+router.route('/add/:id')
     .post(verifyRoles(ROLES_LIST.Admin,ROLES_LIST.Editor),AdminController.add)
 
 
- router.route('/subtract/:id')
+router.route('/subtract/:id')
     .post(verifyRoles(ROLES_LIST.Admin,ROLES_LIST.Editor),AdminController.subtract)
 
 
- router.route('/transfer/:id')
+router.route('/transfer/:id')
     .patch(verifyRoles(ROLES_LIST.Admin,ROLES_LIST.Editor),AdminController.UpdateUserHistory)
 
+
+
+router.route('/credit/:id')
+    .post(verifyRoles(ROLES_LIST.Admin,ROLES_LIST.Editor),AdminController.creditUser)
 
 
 

@@ -8,9 +8,18 @@ usersdetail:{
     type: mongoose.Schema.Types.ObjectId, 
     ref: 'User' 
 },
+
   balance:{
   type:Number,
   },
+  firstname: {
+        type: String,
+       required: [true, 'First name is required field!']
+    },
+  lastname: {
+        type: String,
+        required:  [true, 'Last name is required field!']
+    },
   status:{
     type:String,
     default:"Active",

@@ -2,6 +2,13 @@ const User = require('../model/User');
 const UserApi= require('../model/UserData');
 // const bcrypt = require('bcrypt');
 const connectDB = require('../config/dbConn');
+const sendEmail = require('../Utils/email');
+
+
+
+
+
+
 
 const handleNewUser = async (req, res) => {
      await connectDB(); 
@@ -25,7 +32,16 @@ const handleNewUser = async (req, res) => {
 
          await UserApi.create({
         usersdetail: user._id,
+        firstname: user.firstname,
+        lastname: user.lastname,
         balance:0.00,
+        });
+
+
+   await sendEmail({
+            email: user.email,
+            subject: 'Congratulation on your new Account',
+            message: `Hi <br> Congratulation ${user.firstname} you have a new account with Zurich bank`,
         });
 
 
