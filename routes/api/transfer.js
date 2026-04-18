@@ -3,8 +3,7 @@ const router = express.Router();
 const ROLES_LIST = require('../../config/roles_list');
 const verifyRoles = require('../../middleware/verifyRoles');
 const verifyOtp = require('../../middleware/verifyOtp')
-// const verifyPin = require('../../middleware/verifyPin')
-// const verifyTransferToken = require('../../middleware/verifyTransferToken')
+
 const { verifyTransferToken, verifyPin } = require('../../middleware/verifyTransferToken_verifyPin');
 const transferController = require('../../Controllers/transferController');
 

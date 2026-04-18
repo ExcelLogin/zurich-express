@@ -42,6 +42,8 @@ app.use('/register', require('./routes/register'));
 app.use('/auth', require('./routes/auth'));
 app.use('/refresh', require('./routes/refresh'));
 app.use('/logout', require('./routes/logout'));
+// app.use('/support',  require('./routes/api/support'))
+
 
 
 
@@ -52,7 +54,7 @@ app.use('/users', require('./routes/api/users'));
 app.use('/userData', require('./routes/api/userData'))
 app.use('/Admin', require('./routes/api/Admin'))
 app.use('/history', require('./routes/api/transfer'))
-
+app.use('/support',  require('./routes/api/support'))
 
 
 

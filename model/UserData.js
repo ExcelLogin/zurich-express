@@ -20,10 +20,10 @@ usersdetail:{
         type: String,
         required:  [true, 'Last name is required field!']
     },
-  status:{
-    type:String,
-    default:"Active",
-  },
+  // status:{
+  //   type:String,
+  //   default:"Active",
+  // },
   accountNumber:{
     type:Number,
     default:9678906437,

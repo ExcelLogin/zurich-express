@@ -41,10 +41,8 @@ router.route('/credit/:id')
 
 
 
-
-
-    //  router.route('/updateUser/:id')
-    // .post(verifyRoles(ROLES_LIST.Admin,ROLES_LIST.Editor),AdminController.upDateUser)
+router.route('/status/:id')
+    .patch(verifyRoles(ROLES_LIST.Admin,ROLES_LIST.Editor),AdminController.updateUserStatus)
 
     // router.route('/updateUsers')
     // .put(verifyRoles(ROLES_LIST.Admin,ROLES_LIST.Editor),AdminController.upDateUsers)

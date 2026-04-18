@@ -12,7 +12,8 @@ const sendEmail = require('../Utils/email');
 const getMainUserData = asyncErrorHandler(async (req, res, next) => {
 
     const users = await User.find()
-     .select('-roles  -refreshToken -passwordResetToken -passwordResetTokenExpire');
+     .select('-roles  -refreshToken -password -passwordResetToken -passwordResetTokenExpire -__v')
+     .select('+pin');
 
     if (!users || users.length === 0) {
         const error = new CustomError('No Users account found', 404);
@@ -35,7 +36,7 @@ const getUser = asyncErrorHandler(async (req, res,next) => {
 
     const userD = await UserDetails.findOne({ 'usersdetail' : req.params.id}) //await User.findById(req.params.id)
     .select('-_id -id')
-    .populate('usersdetail',"firstname email lastname country ").select('-__v')
+    .populate('usersdetail',"firstname email lastname country status").select('-__v')
     .select('-_id -id').exec();
 
   if(!userD){
@@ -57,7 +58,7 @@ const getUsers = asyncErrorHandler(async(req, res, next)=> {
     
     const userD = await UserDetails.find()
      .select('-_id -id')
-    .populate('usersdetail',"firstname email lastname country").select('-__v')
+    .populate('usersdetail',"firstname email lastname country status").select('-__v')
     .select('-_id -id').exec();
   
    res.status(200).json({
@@ -253,6 +254,58 @@ const history = await TransferHistory.findOneAndUpdate({ "_id": req.params.id},{
 
 
 
+//update user status
+
+const updateUserStatus = asyncErrorHandler(async (req, res, next) => {
+  const { status } = req.body;
+
+  // Validate status value before hitting the DB
+  const allowedStatuses = ['Active', 'Inactive', 'Blocked'];
+  if (!allowedStatuses.includes(status)) {
+    const error = new CustomError(
+      `Invalid status. Allowed values are: ${allowedStatuses.join(', ')}`,
+      400
+    );
+    return next(error);
+  }
+
+  // Find the UserApi doc to get the referenced User's _id
+  const userD = await UserDetails.findOne({ 'usersdetail': req.params.id});
+
+  if (!userD) {
+    const error = new CustomError('Account with that ID is not found!', 404);
+    return next(error);
+  }
+
+  // Update status on the User document
+  const updatedUser = await User.findOneAndUpdate(
+    userD.usersdetail,              // ObjectId ref to User
+    { status },                     
+    { new: true, runValidators: true }
+  ).select('firstname lastname email status'); // only return what you need
+
+  if (!updatedUser) {
+    const error = new CustomError('User not found!', 404);
+    return next(error);
+  }
+
+  res.status(200).json({
+    success: true,
+    message: `User status updated to ${status}`,
+    data: {
+      name: `${updatedUser.firstname} ${updatedUser.lastname}`,
+      email: updatedUser.email,
+      status: updatedUser.status,
+    },
+  });
+});
+
+
+
+
+
+
+
 
 module.exports = {
   getMainUserData,
@@ -262,8 +315,8 @@ module.exports = {
     subtract,
     creditUser,
     getUsersTfhistory,
-    UpdateUserHistory
+    UpdateUserHistory,
     // upDateUsers,
-    // upDateUser
+    updateUserStatus
 
 }
