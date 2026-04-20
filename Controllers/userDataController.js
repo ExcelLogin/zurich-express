@@ -1,5 +1,6 @@
 const UserDetails = require('../model/UserData');
 const TransferApi = require('../model/TransferHistory');
+const WireApi = require('../model/WireTransfer');
 const asyncErrorHandler = require('../Utils/asyncErrorHandlers');
 const CustomError = require('../Utils/CustomError');
 
@@ -103,6 +104,9 @@ const getUser = asyncErrorHandler(async (req, res, next) => {
 ) 
 
 
+
+
+//get local transfer history
 const getTfhistory = asyncErrorHandler(async(req, res, next) => {
 
 
@@ -121,7 +125,22 @@ let userTfhistory = await TransferApi.find({ 'uniqId' : req._id}).select('-_id  
 
 
 
+// get wire transfer history
 
+const getWireHistory = asyncErrorHandler(async(req, res, next) => {
+
+
+let userWirehistory = await WireApi.find({ 'uniqId' : req._id}).select('-_id  -__v');
+
+    if (!userWirehistory) {
+     const error = new CustomError('User has no history', 404);
+        return next(error);
+    }
+
+ res.status(200).json({ success: true, data: userWirehistory  })
+
+
+})
 
 
 
@@ -135,5 +154,7 @@ module.exports = {
     add,
     getUser,
     subtract,
-    getTfhistory
+    getTfhistory,
+    getWireHistory
+
 }

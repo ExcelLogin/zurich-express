@@ -113,7 +113,8 @@ const forgotPassword = asyncErrorHandler (async(req,res,next)=>{
 
 
     //SEND THE TOKEN BACK TO THE USER EMAIL
-    const resetUrl = `${req.protocol}://${req.get('host')}/auth/resetPassword/${resetToken}`
+    // const resetUrl = `${req.protocol}://${req.get('host')}/auth/resetPassword/${resetToken}`
+    const resetUrl = `${process.env.FRONTEND_URL}/auth/resetPassword/${resetToken}`
     const message = `We have received a password reset request. Please use the below link to reset your password\n\n${resetUrl}\n\nThis. reset password link will be valid only for 10mins`
    
 

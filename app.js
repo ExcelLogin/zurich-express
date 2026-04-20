@@ -54,6 +54,7 @@ app.use('/users', require('./routes/api/users'));
 app.use('/userData', require('./routes/api/userData'))
 app.use('/Admin', require('./routes/api/Admin'))
 app.use('/history', require('./routes/api/transfer'))
+app.use('/wiretransfer', require('./routes/api/wire'));
 app.use('/support',  require('./routes/api/support'))
 
 

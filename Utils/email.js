@@ -12,15 +12,15 @@ const sendEmail = async (option)=>{
             user:process.env.EMAIL_USER,
             pass:process.env.EMAIL_PASSWORD
         },
-         logger: true,  
-        debug: true  
+        //  logger: true,  
+        // debug: true  
     })
 
 
     //DEFINE EMAIL OPTION
 
  const emailOptions = {
-   from : `Mumbai Shipping <${process.env.EMAIL_USER}>`,
+   from : `West Zurich <${process.env.EMAIL_USER}>`,
    to:option.email,
    subject:option.subject,
    text:option.message

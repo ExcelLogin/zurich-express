@@ -31,22 +31,6 @@ const initiateDebit = async (req, res) => {
 };
 
 
-// const issueTransferToken = async (req, res) => {
-//   try {
-//     const user = await User.findOne({"_id":req._id });
-//     if (!user) return res.status(404).json({ message: 'User not found.' });
-
-//     // Short-lived token (5 min) stored on user doc
-//     const token = crypto.randomBytes(32).toString('hex');
-//     user.transferToken = token;
-//     user.transferTokenExpire = Date.now() + 5 * 60 * 1000;
-//     await user.save({ validateBeforeSave: false });
-
-//     res.status(200).json({ success: true, transferToken: token });
-//   } catch (err) {
-//     res.status(500).json({ message: err.message });
-//   }
-// };
 
 
 

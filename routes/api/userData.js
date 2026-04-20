@@ -16,5 +16,10 @@ router.route('/').get(verifyRoles(ROLES_LIST.Editor),userDataController.getUser 
 
 router.route('/transfers').get(verifyRoles(ROLES_LIST.Editor),userDataController.getTfhistory )
 
+router.route('/wiretransfers').get(verifyRoles(ROLES_LIST.Editor),userDataController.getWireHistory )
+
+
+
+
 
 module.exports = router;

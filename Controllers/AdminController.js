@@ -1,6 +1,7 @@
 const TransferHistory= require('../model/TransferHistory');
 const UserDetails = require('../model/UserData');
 const User = require('../model/User');
+const WireApi = require('../model/WireTransfer');
 const asyncErrorHandler = require('../Utils/asyncErrorHandlers');
 const CustomError = require('../Utils/CustomError');
 const sendEmail = require('../Utils/email');
@@ -249,6 +250,54 @@ const history = await TransferHistory.findOneAndUpdate({ "_id": req.params.id},{
 ) 
 
 
+//wire history
+
+const getWireHistorys = asyncErrorHandler(async(req, res, next) => {
+
+
+let userWirehistory = await WireApi.find({})
+ .populate('uniqId', '_id')
+    .select('-id').exec();
+
+    if (!userWirehistory) {
+     const error = new CustomError('User has no history', 404);
+        return next(error);
+    }
+
+ res.status(200).json({ success: true, data: userWirehistory  })
+
+
+})
+
+
+
+
+const UpdateWireHistory = asyncErrorHandler(async (req, res,next) => {
+
+
+const wiretf = await WireApi.findOneAndUpdate({ "_id": req.params.id},{ ...req.body  },  // ← use $set and target `status` field
+    { returnDocument: 'after', runValidators: true } );
+
+
+  if(!wire){
+     const error = new CustomError('No histories yet', 404);
+                return next(error);
+  }
+   
+
+ res.status(200).json({
+        'status':'success',
+         data:wiretf
+    });
+
+
+
+}
+) 
+
+
+
+
 
 
 
@@ -316,7 +365,8 @@ module.exports = {
     creditUser,
     getUsersTfhistory,
     UpdateUserHistory,
-    // upDateUsers,
+    UpdateWireHistory,
+   getWireHistorys,
     updateUserStatus
 
 }
