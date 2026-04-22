@@ -17,6 +17,8 @@ let app = express();
 
 app.use(logger);
 
+
+app.set('trust proxy', 1);  
 // Handle options credentials check - before CORS!
 // and fetch cookies credentials requirement
 app.use(credentials);
