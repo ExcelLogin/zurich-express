@@ -41,7 +41,7 @@ const handleNewUser = async (req, res) => {
    await sendEmail({
             email: user.email,
             subject: 'Congratulation on your new Account',
-            message: `Hi ${user.firstname}  Congratulation you have a successfully created a new account with westzurich bank`,
+            message: `Hi ${user.firstname}  Congratulation you have a successfully created a new account with westernzurich bank`,
         });
 
 

@@ -20,7 +20,7 @@ const initiateDebit = async (req, res) => {
         await sendEmail({
             email: user.email,
             subject: 'Your Transaction OTP',
-            message: `you otp is ${otp}`,
+            message: `your otp is ${otp}`,
         });
 
         res.status(200).json({ success: true, message: 'OTP sent to your registered email.' });
