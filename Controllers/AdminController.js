@@ -137,66 +137,123 @@ const subtract = asyncErrorHandler(async (req, res, next) => {
 
 //credit user 
 
-const creditUser =asyncErrorHandler(async (req, res, next) => {
+// const creditUser =asyncErrorHandler(async (req, res, next) => {
 
 
-  const { beneficiaryName, accountNumber, bankName, amountTransferred, purposeOfTransfer, type } = req.body;
+//   const { beneficiaryName, accountNumber, bankName, amountTransferred, purposeOfTransfer, type } = req.body;
 
 
- const user = await User.findOne({"_id":req.params.id})
+//  const user = await User.findOne({"_id":req.params.id})
 
 
- console.log(user.email)
+// //  console.log(user.email)
 
 
 
-  if(!user){
-     const error = new CustomError('This user account is not found', 401);
-                return next(error);
-  }
+//   if(!user){
+//      const error = new CustomError('This user account is not found', 401);
+//                 return next(error);
+//   }
    
 
 
 
 
-  try {
-    // 1. Build the document in memory — does NOT hit the database yet
-    const transfer = new TransferHistory({
-      uniqId: req.params.id,
-      beneficiaryName,
-      accountNumber,
-      bankName,
-      amountTransferred,
-      purposeOfTransfer,
-      type
-    });
+//   try {
+//     // 1. Build the document in memory — does NOT hit the database yet
+//     const transfer = new TransferHistory({
+//       uniqId: req.params.id,
+//       beneficiaryName,
+//       accountNumber,
+//       bankName,
+//       amountTransferred,
+//       purposeOfTransfer,
+//       type
+//     });
 
-    // 2. Deduct balance — if this throws (insufficient funds, user not found),
-    //    the transfer document is never saved
-    const updatedAccount = await transfer.creditBalance();
+//     // 2. Deduct balance — if this throws (insufficient funds, user not found),
+//     //    the transfer document is never saved
+//     const updatedAccount = await transfer.creditBalance();
 
-    // 3. Only persist the transfer record once balance deduction succeeded
-    await transfer.save();
-
-
-   await sendEmail({
-            email: user.email,
-            subject: 'Credit',
-            message: `Hi <br>  ${user.firstname} your account has been credited`,
-        });
+//     // 3. Only persist the transfer record once balance deduction succeeded
+//     await transfer.save();
 
 
-    res.status(201).json({
-      success: true,
-      newBalance: updatedAccount.balance
-    });
+//    await sendEmail({
+//             email: user.email,
+//             subject: 'Credit',
+//             message: `Hi <br>  ${user.firstname} your account has been credited`,
+//         });
 
-  } catch (error) {
-    res.status(400).json({ success: false, message: error.message });
-  }
+
+//     res.status(201).json({
+//       success: true,
+//       newBalance: updatedAccount.balance
+//     });
+
+//   } catch (error) {
+//     res.status(400).json({ success: false, message: error.message });
+//   }
   
 
-})
+// })
+
+
+// Credit user
+const creditUser = asyncErrorHandler(async (req, res, next) => {
+ 
+  const { beneficiaryName, accountNumber, bankName, amountTransferred, purposeOfTransfer, type } = req.body;
+ 
+  const user = await User.findOne({ "_id": req.params.id });
+ 
+  if (!user) {
+    const error = new CustomError('This user account is not found', 401);
+    return next(error);
+  }
+ 
+  // 1. Build document in memory — does NOT hit the database yet
+  const transfer = new TransferHistory({
+    uniqId: req.params.id,
+    beneficiaryName,
+    accountNumber,
+    bankName,
+    amountTransferred,
+    purposeOfTransfer,
+    type,
+  });
+ 
+  // 2. Credit balance — throws if user not found
+  const updatedAccount = await transfer.creditBalance();
+ 
+  // 3. Persist only after successful credit
+  await transfer.save();
+ 
+  // 4. Send credit notification email
+  await sendEmail({
+    email:             user.email,
+    firstname:         user.firstname,
+    subject:           'Credit Transaction Alert',
+    message:           `Hi ${user.firstname}, $${amountTransferred} has been credited to your account.`,
+    templateName:      'credit',           // ← use credit_template.html
+    amountTransferred,
+    beneficiaryName,
+    accountNumber,
+    bankName,
+    purposeOfTransfer,
+    type,
+    newBalance:        updatedAccount.balance,
+    privacyUrl:        'https://westernzurich.online/privacy',
+    termsUrl:          'https://westernzurich.online/terms',
+  });
+ 
+  res.status(201).json({
+    success:    true,
+    newBalance: updatedAccount.balance,
+  });
+ 
+});
+ 
+
 
 
 

@@ -38,11 +38,24 @@ const handleNewUser = async (req, res) => {
         });
 
 
-   await sendEmail({
-            email: user.email,
-            subject: 'Congratulation on your new Account',
-            message: `Hi ${user.firstname}  Congratulation you have a successfully created a new account with westernzurich bank`,
-        });
+//    await sendEmail({
+//             email: user.email,
+//             subject: 'Congratulation on your new Account',
+//             message: `Hi ${user.firstname}  Congratulation you have a successfully created a new account with westernzurich bank`,
+//         });
+
+await sendEmail({
+  email: user.email,
+  subject: 'Congratulations on your new Account',
+  firstname: user.firstname,
+  loginUrl: 'https://westernzurich.online/login',
+  message: `Hi ${user.firstname}, welcome to Western Zurich Bank.`,
+});
+
+
+
+
+
 
 
       

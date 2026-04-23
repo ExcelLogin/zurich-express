@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>Support Ticket</title>
+</head>
+<body style="margin:0;padding:0;background-color:#f0f2f5;font-family:Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f0f2f5;padding:40px 0;">
+    <tr><td align="center">
+
+        <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;background-color:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.10);">
+
+          <!-- Header -->
+          <tr>
+            <td style="background:linear-gradient(135deg,#b30000 0%,#8b0000 60%,#1a1a1a 100%);padding:36px 40px 28px;text-align:center;">
+              <img src="{{logoUrl}}" alt="Western Zurich Bank" width="130" style="display:block;margin:0 auto;width:130px;height:auto;border:0;" />
+            </td>
+          </tr>
+
+          <!-- Gold rule -->
+          <tr><td style="background:linear-gradient(90deg,transparent,#c8a84b,transparent);height:2px;font-size:0;line-height:0;">&nbsp;</td></tr>
+
+          <!-- Title band -->
+          <tr>
+            <td style="background:#1c1c1c;padding:22px 48px;text-align:center;">
+              <p style="font-family:Georgia,serif;font-size:22px;font-weight:700;color:#ffffff;margin:0 0 4px;">Support Ticket Received</p>
+              <p style="font-size:12px;color:#c8a84b;letter-spacing:2px;text-transform:uppercase;margin:0;">We have received your request</p>
+            </td>
+          </tr>
+
+          <!-- Body -->
+          <tr>
+            <td style="padding:40px 48px 20px;">
+
+              <p style="font-size:15px;color:#333333;margin:0 0 20px;">
+                Dear <strong style="color:#8b0000;">{{firstname}}</strong>,
+              </p>
+
+              <p style="font-size:15px;line-height:1.75;color:#444444;margin:0 0 28px;">
+                Thank you for reaching out. Your support ticket has been successfully submitted.
+                Our team will review your request and respond as soon as possible.
+              </p>
+
+              <!-- Ticket ID Badge -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:linear-gradient(135deg,#8b0000,#b30000);border-radius:10px;margin:0 0 28px;">
+                <tr>
+                  <td style="padding:24px;text-align:center;">
+                    <p style="font-size:12px;text-transform:uppercase;letter-spacing:2px;color:#ffcccc;margin:0 0 8px;">Ticket Reference</p>
+                    <p style="font-size:20px;font-weight:700;color:#ffffff;font-family:Georgia,serif;letter-spacing:2px;margin:0 0 6px;">{{ticketId}}</p>
+                    <p style="font-size:12px;color:#ffcccc;margin:0;">{{date}}</p>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Ticket Details -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #ebebeb;border-radius:8px;overflow:hidden;margin:0 0 28px;">
+                <tr style="background:#fafafa;">
+                  <td style="padding:14px 20px;font-size:13px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #ebebeb;width:35%;">Title</td>
+                  <td style="padding:14px 20px;font-size:14px;color:#222;font-weight:600;border-bottom:1px solid #ebebeb;">{{title}}</td>
+                </tr>
+                <tr>
+                  <td style="padding:14px 20px;font-size:13px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #ebebeb;">Category</td>
+                  <td style="padding:14px 20px;font-size:14px;color:#222;border-bottom:1px solid #ebebeb;">{{category}}</td>
+                </tr>
+                <tr style="background:#fafafa;">
+                  <td style="padding:14px 20px;font-size:13px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #ebebeb;">Priority</td>
+                  <td style="padding:14px 20px;font-size:14px;border-bottom:1px solid #ebebeb;">
+                    <span style="display:inline-block;padding:3px 12px;border-radius:20px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;background:#fff4e0;color:#b36a00;border:1px solid #f0d080;">
+                      {{priority}}
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding:14px 20px;font-size:13px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:1px;vertical-align:top;">Description</td>
+                  <td style="padding:14px 20px;font-size:14px;color:#444;line-height:1.6;">{{description}}</td>
+                </tr>
+              </table>
+
+              <!-- Info box -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f0f7ff;border:1px solid #cce0ff;border-radius:6px;margin:0 0 28px;">
+                <tr>
+                  <td style="padding:16px 20px;">
+                    <p style="font-size:13px;color:#1a4a7a;margin:0;">
+                      📬 &nbsp;<strong>What happens next?</strong> Our support team will review your ticket and
+                      respond to <strong>{{email}}</strong> within 24–48 hours.
+                      Please also check your <strong>spam and junk folders</strong>.
+                    </p>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Security note -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#fff8f0;border:1px solid #ffe0c2;border-radius:6px;margin:0 0 8px;">
+                <tr>
+                  <td style="padding:16px 20px;">
+                    <p style="font-size:13px;color:#7a4000;margin:0;">
+                      🔒 &nbsp;If you did not raise this ticket, please contact us immediately at
+                      <a href="mailto:support@westernzurich.online" style="color:#b30000;font-weight:600;">support@westernzurich.online</a>
+                    </p>
+                  </td>
+                </tr>
+              </table>
+
+            </td>
+          </tr>
+
+          <!-- Divider -->
+          <tr><td style="padding:0 48px;"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="border-top:1px solid #ebebeb;font-size:0;line-height:0;">&nbsp;</td></tr></table></td></tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:28px 48px 36px;text-align:center;">
+              <p style="font-size:13px;color:#888;margin:0 0 6px;">© 2026 Western Zurich Bank. All rights reserved.</p>
+              <p style="font-size:12px;color:#aaa;margin:0 0 12px;">
+                <a href="mailto:support@westernzurich.online" style="color:#b30000;">support@westernzurich.online</a>
+              </p>
+              <p style="font-size:11px;color:#bbb;line-height:1.6;margin:0;">
+                <a href="{{privacyUrl}}" style="color:#b30000;text-decoration:underline;">Privacy Policy</a>
+                &nbsp;&middot;&nbsp;
+                <a href="{{termsUrl}}" style="color:#b30000;text-decoration:underline;">Terms of Service</a>
+              </p>
+            </td>
+          </tr>
+
+          <!-- Bottom bar -->
+          <tr><td style="background:linear-gradient(90deg,#8b0000,#b30000,#c8a84b,#b30000,#8b0000);height:5px;font-size:0;line-height:0;">&nbsp;</td></tr>
+
+        </table>
+    </td></tr>
+  </table>
+</body>
+</html>

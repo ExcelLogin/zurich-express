@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>Transaction Notification</title>
+</head>
+<body style="margin:0;padding:0;background-color:#f0f2f5;font-family:Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f0f2f5;padding:40px 0;">
+    <tr><td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;background-color:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.10);">
+
+          <tr>
+            <td style="background:linear-gradient(135deg,#b30000 0%,#8b0000 60%,#1a1a1a 100%);padding:36px 40px 28px;text-align:center;">
+              <img src="LOGO_URL_PLACEHOLDER" alt="Western Zurich Bank" width="130" style="display:block;margin:0 auto;width:130px;height:auto;border:0;" />
+            </td>
+          </tr>
+
+          <tr><td style="background:linear-gradient(90deg,transparent,#c8a84b,transparent);height:2px;font-size:0;line-height:0;">&nbsp;</td></tr>
+
+          <tr>
+            <td style="background:#1c1c1c;padding:22px 48px;text-align:center;">
+              <p style="font-family:Georgia,serif;font-size:22px;font-weight:700;color:#ffffff;margin:0 0 4px;">Debit Transaction Alert</p>
+              <p style="font-size:12px;color:#c8a84b;letter-spacing:2px;text-transform:uppercase;margin:0;">Transaction Notification</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:40px 48px 20px;">
+              <p style="font-size:15px;color:#333333;margin:0 0 24px;">Dear <strong style="color:#8b0000;">{{firstname}}</strong>,</p>
+              <p style="font-size:15px;line-height:1.75;color:#444444;margin:0 0 28px;">A debit transaction has been made on your account. Please find the details below.</p>
+
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:linear-gradient(135deg,#8b0000,#b30000);border-radius:10px;margin:0 0 28px;">
+                <tr>
+                  <td style="padding:28px;text-align:center;">
+                    <p style="font-size:12px;text-transform:uppercase;letter-spacing:2px;color:#ffcccc;margin:0 0 8px;">Amount Debited</p>
+                    <p style="font-size:42px;font-weight:700;color:#ffffff;font-family:Georgia,serif;margin:0 0 6px;">${{amountTransferred}}</p>
+                    <p style="font-size:12px;color:#ffcccc;margin:0;">{{date}}</p>
+                  </td>
+                </tr>
+              </table>
+
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #ebebeb;border-radius:8px;overflow:hidden;margin:0 0 28px;">
+                <tr style="background:#fafafa;">
+                  <td style="padding:14px 20px;font-size:13px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #ebebeb;width:45%;">Beneficiary</td>
+                  <td style="padding:14px 20px;font-size:14px;color:#222;font-weight:600;border-bottom:1px solid #ebebeb;">{{beneficiaryName}}</td>
+                </tr>
+                <tr>
+                  <td style="padding:14px 20px;font-size:13px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #ebebeb;">Account Number</td>
+                  <td style="padding:14px 20px;font-size:14px;color:#222;border-bottom:1px solid #ebebeb;">{{accountNumber}}</td>
+                </tr>
+                <tr style="background:#fafafa;">
+                  <td style="padding:14px 20px;font-size:13px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #ebebeb;">Bank</td>
+                  <td style="padding:14px 20px;font-size:14px;color:#222;border-bottom:1px solid #ebebeb;">{{bankName}}</td>
+                </tr>
+                <tr>
+                  <td style="padding:14px 20px;font-size:13px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #ebebeb;">Purpose</td>
+                  <td style="padding:14px 20px;font-size:14px;color:#222;border-bottom:1px solid #ebebeb;">{{purposeOfTransfer}}</td>
+                </tr>
+                <tr style="background:#fafafa;">
+                  <td style="padding:14px 20px;font-size:13px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #ebebeb;">Transfer Type</td>
+                  <td style="padding:14px 20px;font-size:14px;color:#222;border-bottom:1px solid #ebebeb;">{{type}}</td>
+                </tr>
+                <tr>
+                  <td style="padding:14px 20px;font-size:13px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:1px;">Remaining Balance</td>
+                  <td style="padding:14px 20px;font-size:15px;color:#1a6b1a;font-weight:700;">${{newBalance}}</td>
+                </tr>
+              </table>
+
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#fff8f0;border:1px solid #ffe0c2;border-radius:6px;margin:0 0 8px;">
+                <tr>
+                  <td style="padding:16px 20px;">
+                    <p style="font-size:13px;color:#7a4000;margin:0;">
+                      🔒 <strong>Not you?</strong> If you did not authorise this transaction, contact us immediately at
+                      <a href="mailto:support@westernzurich.online" style="color:#b30000;font-weight:600;">support@westernzurich.online</a>
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <tr><td style="padding:0 48px;"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="border-top:1px solid #ebebeb;font-size:0;line-height:0;">&nbsp;</td></tr></table></td></tr>
+
+          <tr>
+            <td style="padding:28px 48px 36px;text-align:center;">
+              <p style="font-size:13px;color:#888;margin:0 0 6px;">© 2026 Western Zurich Bank. All rights reserved.</p>
+              <p style="font-size:12px;color:#aaa;margin:0 0 12px;"><a href="mailto:support@westernzurich.online" style="color:#b30000;">support@westernzurich.online</a></p>
+              <p style="font-size:11px;color:#bbb;line-height:1.6;margin:0;">
+                <a href="{{privacyUrl}}" style="color:#b30000;text-decoration:underline;">Privacy Policy</a>
+                &nbsp;&middot;&nbsp;
+                <a href="{{termsUrl}}" style="color:#b30000;text-decoration:underline;">Terms of Service</a>
+              </p>
+            </td>
+          </tr>
+
+          <tr><td style="background:linear-gradient(90deg,#8b0000,#b30000,#c8a84b,#b30000,#8b0000);height:5px;font-size:0;line-height:0;">&nbsp;</td></tr>
+
+        </table>
+    </td></tr>
+  </table>
+</body>
+</html>
