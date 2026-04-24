@@ -60,10 +60,7 @@
 // module.exports= sendEmail;
 
 
-
 const nodemailer = require('nodemailer');
-const fs = require('fs');
-const path = require('path');
 
 /**
  * Replaces {{placeholder}} tokens in the HTML template string.
@@ -72,33 +69,33 @@ const compileTemplate = (template, variables = {}) => {
   return template.replace(/\{\{(\w+)\}\}/g, (_, key) => variables[key] || '');
 };
 
-
-
-
-
-
-
-
+// ── Pre-load all templates (bundled as JS modules) ────────────────────────
+const templates = {
+  otp:              require('./templates/otp_template'),
+  support:          require('./templates/support_template'),
+  support_internal: require('./templates/support_internal_template'),
+  credit:           require('./templates/credit_template'),
+  debit:            require('./templates/debit_template'),
+  email:            require('./templates/email_template'),
+};
 
 const sendEmail = async (option) => {
 
+  // ── 1. Load & compile HTML template ──────────────────────────────────────
+  const isOtp      = option.templateName === 'otp';
+  const isSupport  = option.templateName === 'support';
+  const isInternal = option.templateName === 'support_internal';
+  const isCredit   = option.templateName === 'credit';
+  const isDebit    = option.amountTransferred !== undefined;
 
-// ── 1. Load & compile HTML template ──────────────────────────────────────
-  const isOtp        = option.templateName === 'otp';
-  const isSupport    = option.templateName === 'support';
-  const isInternal   = option.templateName === 'support_internal';
-  const isCredit     = option.templateName === 'credit';
-  const isDebit      = option.amountTransferred !== undefined;
+  const templateKey = isOtp      ? 'otp'              :
+                      isSupport  ? 'support'          :
+                      isInternal ? 'support_internal' :
+                      isCredit   ? 'credit'           :
+                      isDebit    ? 'debit'            :
+                                   'email';
 
-  const templateFile = isOtp      ? 'otp_template.html'              :
-                       isSupport  ? 'support_template.html'          :
-                       isInternal ? 'support_internal_template.html' :
-                       isCredit   ? 'credit_template.html'           :
-                       isDebit    ? 'debit_template.html'            :
-                                    'email_template.html';
-
-  const templatePath = path.join(__dirname, templateFile);
-  const rawTemplate  = fs.readFileSync(templatePath, 'utf8');
+  const rawTemplate = templates[templateKey];
 
   const html = compileTemplate(rawTemplate, {
     // shared
@@ -130,7 +127,6 @@ const sendEmail = async (option) => {
     description:       option.description       || '',
   });
 
-
   // ── 2. Create transporter ─────────────────────────────────────────────────
   const transporter = nodemailer.createTransport({
     host:   process.env.EMAIL_HOST,
@@ -140,8 +136,8 @@ const sendEmail = async (option) => {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASSWORD,
     },
-        //   logger: true,  
-        // debug: true  
+    // logger: true,
+    // debug: true,
   });
 
   // ── 3. Define email options ───────────────────────────────────────────────

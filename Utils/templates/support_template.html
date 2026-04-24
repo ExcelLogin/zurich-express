@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+module.exports = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-  <title>New Support Ticket</title>
+  <title>Support Ticket</title>
 </head>
 <body style="margin:0;padding:0;background-color:#f0f2f5;font-family:Arial,sans-serif;">
   <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f0f2f5;padding:40px 0;">
@@ -25,8 +25,8 @@
           <!-- Title band -->
           <tr>
             <td style="background:#1c1c1c;padding:22px 48px;text-align:center;">
-              <p style="font-family:Georgia,serif;font-size:22px;font-weight:700;color:#ffffff;margin:0 0 4px;">New Support Ticket</p>
-              <p style="font-size:12px;color:#c8a84b;letter-spacing:2px;text-transform:uppercase;margin:0;">Internal Notification</p>
+              <p style="font-family:Georgia,serif;font-size:22px;font-weight:700;color:#ffffff;margin:0 0 4px;">Support Ticket Received</p>
+              <p style="font-size:12px;color:#c8a84b;letter-spacing:2px;text-transform:uppercase;margin:0;">We have received your request</p>
             </td>
           </tr>
 
@@ -35,37 +35,26 @@
             <td style="padding:40px 48px 20px;">
 
               <p style="font-size:15px;color:#333333;margin:0 0 20px;">
-                A new support ticket has been submitted by a customer. Please review and respond promptly.
+                Dear <strong style="color:#8b0000;">{{firstname}}</strong>,
+              </p>
+
+              <p style="font-size:15px;line-height:1.75;color:#444444;margin:0 0 28px;">
+                Thank you for reaching out. Your support ticket has been successfully submitted.
+                Our team will review your request and respond as soon as possible.
               </p>
 
               <!-- Ticket ID Badge -->
-              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:linear-gradient(135deg,#1a1a1a,#3a3a3a);border-radius:10px;margin:0 0 28px;">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:linear-gradient(135deg,#8b0000,#b30000);border-radius:10px;margin:0 0 28px;">
                 <tr>
                   <td style="padding:24px;text-align:center;">
-                    <p style="font-size:12px;text-transform:uppercase;letter-spacing:2px;color:#c8a84b;margin:0 0 8px;">Ticket Reference</p>
+                    <p style="font-size:12px;text-transform:uppercase;letter-spacing:2px;color:#ffcccc;margin:0 0 8px;">Ticket Reference</p>
                     <p style="font-size:20px;font-weight:700;color:#ffffff;font-family:Georgia,serif;letter-spacing:2px;margin:0 0 6px;">{{ticketId}}</p>
-                    <p style="font-size:12px;color:#aaaaaa;margin:0;">{{date}}</p>
-                  </td>
-                </tr>
-              </table>
-
-              <!-- Customer Info -->
-              <p style="font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:#b30000;margin:0 0 10px;">Customer Details</p>
-              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #ebebeb;border-radius:8px;overflow:hidden;margin:0 0 24px;">
-                <tr style="background:#fafafa;">
-                  <td style="padding:14px 20px;font-size:13px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #ebebeb;width:35%;">Name</td>
-                  <td style="padding:14px 20px;font-size:14px;color:#222;font-weight:600;border-bottom:1px solid #ebebeb;">{{firstname}} {{lastname}}</td>
-                </tr>
-                <tr>
-                  <td style="padding:14px 20px;font-size:13px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:1px;">Email</td>
-                  <td style="padding:14px 20px;font-size:14px;color:#222;">
-                    <a href="mailto:{{email}}" style="color:#b30000;font-weight:600;">{{email}}</a>
+                    <p style="font-size:12px;color:#ffcccc;margin:0;">{{date}}</p>
                   </td>
                 </tr>
               </table>
 
               <!-- Ticket Details -->
-              <p style="font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:#b30000;margin:0 0 10px;">Ticket Details</p>
               <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #ebebeb;border-radius:8px;overflow:hidden;margin:0 0 28px;">
                 <tr style="background:#fafafa;">
                   <td style="padding:14px 20px;font-size:13px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #ebebeb;width:35%;">Title</td>
@@ -89,13 +78,26 @@
                 </tr>
               </table>
 
-              <!-- Action box -->
-              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f0f7ff;border:1px solid #cce0ff;border-radius:6px;margin:0 0 8px;">
+              <!-- Info box -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f0f7ff;border:1px solid #cce0ff;border-radius:6px;margin:0 0 28px;">
                 <tr>
                   <td style="padding:16px 20px;">
                     <p style="font-size:13px;color:#1a4a7a;margin:0;">
-                      📋 &nbsp;<strong>Action required:</strong> Please respond to the customer at
-                      <a href="mailto:{{email}}" style="color:#b30000;font-weight:600;">{{email}}</a> within 24–48 hours.
+                      📬 &nbsp;<strong>What happens next?</strong> Our support team will review your ticket and
+                      respond to <strong>{{email}}</strong> within 24–48 hours.
+                      Please also check your <strong>spam and junk folders</strong>.
+                    </p>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Security note -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#fff8f0;border:1px solid #ffe0c2;border-radius:6px;margin:0 0 8px;">
+                <tr>
+                  <td style="padding:16px 20px;">
+                    <p style="font-size:13px;color:#7a4000;margin:0;">
+                      🔒 &nbsp;If you did not raise this ticket, please contact us immediately at
+                      <a href="mailto:support@westernzurich.online" style="color:#b30000;font-weight:600;">support@westernzurich.online</a>
                     </p>
                   </td>
                 </tr>
@@ -110,8 +112,15 @@
           <!-- Footer -->
           <tr>
             <td style="padding:28px 48px 36px;text-align:center;">
-              <p style="font-size:13px;color:#888;margin:0 0 6px;">© 2026 Western Zurich Bank. Internal Use Only.</p>
-              <p style="font-size:12px;color:#aaa;margin:0;">This is an automated internal notification. Do not reply to this email.</p>
+              <p style="font-size:13px;color:#888;margin:0 0 6px;">© 2026 Western Zurich Bank. All rights reserved.</p>
+              <p style="font-size:12px;color:#aaa;margin:0 0 12px;">
+                <a href="mailto:support@westernzurich.online" style="color:#b30000;">support@westernzurich.online</a>
+              </p>
+              <p style="font-size:11px;color:#bbb;line-height:1.6;margin:0;">
+                <a href="{{privacyUrl}}" style="color:#b30000;text-decoration:underline;">Privacy Policy</a>
+                &nbsp;&middot;&nbsp;
+                <a href="{{termsUrl}}" style="color:#b30000;text-decoration:underline;">Terms of Service</a>
+              </p>
             </td>
           </tr>
 
@@ -122,4 +131,4 @@
     </td></tr>
   </table>
 </body>
-</html>
+</html>`;
